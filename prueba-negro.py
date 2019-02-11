@@ -30,18 +30,6 @@ while(1):
     im2, contours, hierarchy = cv2.findContours(canny.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     
     
-    areas = [cv2.contourArea(c) for c in contours]
-    i = 0
-    for extension in areas:
-        if extension > 600:
-            actual = contours[i]
-            approx = cv2.approxPolyDP(actual,0.05*cv2.arcLength(actual,True),True)
-            if len(approx)==3:
-                cv2.drawContours(frame,[actual],0,(0,0,255),2)
-                cv2.drawContours(mask,[actual],0,(0,0,255),2)
-            i = i+1
-    
-    
     #p=cv2.drawContours(mask, contours, -1, (0,0,255), 2)
 
     cv2.imshow('frame',frame)
